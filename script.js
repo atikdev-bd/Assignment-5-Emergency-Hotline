@@ -67,6 +67,13 @@ function setAlert(id1, id2) {
 }
 
 
+//  delete history section
+document.getElementById('delete-history-btn').addEventListener('click', function () {
+    console.log('delete btn clicked');
+    document.getElementById('parent-section').innerHTML = "";
+})
+
+
 document.getElementById("call-btn-all").addEventListener("click", function () {
     setAlert('service-title', 'national-number');
 
