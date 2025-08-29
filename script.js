@@ -2,7 +2,6 @@
 
 let buttons = document.getElementsByClassName("love-btn");
 
-
 for (let i = 0; i < buttons.length; i++) {
     buttons[i].addEventListener("click", function () {
         const loveText = parseInt(document.getElementById('love-text').innerText);
@@ -11,15 +10,11 @@ for (let i = 0; i < buttons.length; i++) {
 
     });
 
-
-
 }
-
 // love button increase number end
 
 
 // call button alert
-
 function setAlert(id1, id2) {
     const serviceTitle = document.getElementById(id1).innerText;
     const serviceNumber = document.getElementById(id2).innerText;
@@ -29,15 +24,16 @@ function setAlert(id1, id2) {
         alert('You have no enough gem to call. Please recharge your gem.');
         return;
     }
-    alert('Calling' + ' ' + serviceTitle + ' ' + serviceNumber + '...');
+    alert(" 📞 " + 'Calling ' + serviceTitle + ' ' + serviceNumber + '...');
 
     let updateGem = gemPoint - 20;
     document.getElementById('gem-point').innerText = updateGem;
 
-    let now = new Date();
 
+
+    let now = new Date(); // current date and time
     let time = now.toLocaleTimeString();
-    console.log(time);
+    // console.log(time);
 
     // 1. Get parent div
     let parent = document.getElementById("parent-section");
@@ -62,16 +58,38 @@ function setAlert(id1, id2) {
     // 5. Append into parent
     parent.appendChild(newCardHistory);
 
-
-
 }
 
+
+//   copy to clipboard
+const allButton = document.querySelectorAll('.copy-btn');
+
+for (let i = 0; i < allButton.length; i++) {
+
+    const singleButton = allButton[i] // get each button
+    singleButton.addEventListener('click', function () {
+
+        const clickedCard = allButton[i].closest(".card") // get the closest card of that button
+        // console.log(clickedCard);
+
+        const number = clickedCard.querySelector('.copy-number').innerText; // get the text from that card
+        navigator.clipboard.writeText(number); // copy the text
+        alert('Copy Number: ' + number);
+
+        const copyGem = parseInt(document.getElementById('copy-gem').innerText);
+
+        let updateCopyGem = copyGem + 1;
+        document.getElementById('copy-gem').innerText = updateCopyGem;
+
+    })
+}
 
 //  delete history section
 document.getElementById('delete-history-btn').addEventListener('click', function () {
     console.log('delete btn clicked');
     document.getElementById('parent-section').innerHTML = "";
 })
+
 
 
 document.getElementById("call-btn-all").addEventListener("click", function () {
